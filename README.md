@@ -27,18 +27,18 @@ In order to contribute to pixman, you will need a working knowledge of
 the git version control system. For a quick getting started guide,
 there is the "Everyday Git With 20 Commands Or So guide"
 
-    https://www.kernel.org/pub/software/scm/git/docs/everyday.html
+    https://www.kernel.org/pub/software/scm/git/docs/giteveryday.html
 
 from the Git homepage. For more in depth git documentation, see the
 resources on the Git community documentation page:
 
-    https://git-scm.com/documentation
+    https://git-scm.com/docs
 
 Pixman uses the infrastructure from the freedesktop.org umbrella
 project. For instructions about how to use the git service on
 freedesktop.org, see:
 
-    https://www.freedesktop.org/wiki/Infrastructure/git/Developers
+    https://www.freedesktop.org/wiki/Infrastructure/git/
 
 The Pixman master repository can be found at:
 
@@ -48,22 +48,27 @@ The Pixman master repository can be found at:
 Sending patches
 ---------------
 
-Patches should be submitted in form of Merge Requests via Gitlab.
+Patches should be submitted in form of Merge Requests via GitLab.
 
-You will first need to create a fork of the main pixman repository at
+You will first need to verify your Freedesktop.org account by creating a *User
+verification* issue:
+
+    https://gitlab.freedesktop.org/freedesktop/freedesktop/-/issues/new?description_template=User%20verification
+
+Then you will be able to create a fork of the main pixman repository at
 
     https://gitlab.freedesktop.org/pixman/pixman
 
 via the Fork button on the top right. Once that is done you can add your
 personal repository as a remote to your local pixman development git checkout:
 
-    git remote add my-gitlab git@gitlab.freedesktop.org:YOURUSERNAME/pixman.git
+    git remote add my-gitlab git@ssh.gitlab.freedesktop.org:YOURUSERNAME/pixman.git
 
     git fetch my-gitlab
 
-Make sure to have added ssh keys to your gitlab profile at
+Make sure to have added ssh keys to your GitLab profile at
 
-    https://gitlab.freedesktop.org/profile/keys
+    https://gitlab.freedesktop.org/-/user_settings/ssh_keys
 
 Once that is set up, the general workflow for sending patches is to create a
 new local branch with your improvements and once it's ready push it to your
@@ -81,7 +86,7 @@ you push them back to your personal pixman fork:
 
     git push -f my-gitlab
 
-If there is an open Merge Request Gitlab will automatically pick up the
+If there is an open Merge Request GitLab will automatically pick up the
 changes from your branch and pixman developers can review them anew.
 
 In order for your patches to be accepted, please consider the
@@ -95,7 +100,7 @@ following guidelines:
    test suite fail due to the bug, and then another commit that fixes
    the bug.
 
-   You can run the test suite with 
+   You can run the test suite with
 
        meson test -C builddir
 
