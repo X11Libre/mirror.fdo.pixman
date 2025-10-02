@@ -4,79 +4,67 @@ Pixman
 Pixman is a library that provides low-level pixel manipulation
 features such as image compositing and trapezoid rasterization.
 
-Questions should be directed to the pixman mailing list:
+Questions should be directed to the [pixman mailing list][mailing-list].
 
-    https://lists.freedesktop.org/mailman/listinfo/pixman
-
-You can also file bugs at
-
-    https://gitlab.freedesktop.org/pixman/pixman/-/issues/new
-
-or submit improvements in form of a Merge Request via
-
-    https://gitlab.freedesktop.org/pixman/pixman/-/merge_requests
+You can also file bugs on the [Issues][pixman-issue] page or submit improvements in
+form of a [Merge Request][pixman-mr].
 
 For real time discussions about pixman, feel free to join the IRC
-channels #cairo and #xorg-devel on the OFTC IRC network.
+channels `#cairo` and `#xorg-devel` on the OFTC IRC network.
 
+[mailing-list]: https://lists.freedesktop.org/mailman/listinfo/pixman
+[pixman-issue]: https://gitlab.freedesktop.org/pixman/pixman/-/issues/new
+[pixman-mr]: https://gitlab.freedesktop.org/pixman/pixman/-/merge_requests
 
 Contributing
 ------------
 
-In order to contribute to pixman, you will need a working knowledge of
-the git version control system. For a quick getting started guide,
-there is the "Everyday Git With 20 Commands Or So guide"
+In order to contribute to pixman, you will need a working knowledge of the git
+version control system. For a quick getting started guide, there is the
+[Everyday Git With 20 Commands Or So][git-guide] guide from the Git homepage.
+For more in-depth git documentation, see the resources on the [Git
+documentation][git-doc] page.
 
-    https://www.kernel.org/pub/software/scm/git/docs/giteveryday.html
-
-from the Git homepage. For more in depth git documentation, see the
-resources on the Git community documentation page:
-
-    https://git-scm.com/docs
-
-Pixman uses the infrastructure from the freedesktop.org umbrella
-project. For instructions about how to use the git service on
-freedesktop.org, see:
-
-    https://www.freedesktop.org/wiki/Infrastructure/git/
+Pixman uses the infrastructure from the freedesktop.org umbrella project. For
+instructions about the git service on freedesktop.org, see the [Git
+Infrastructure][fdo-git-infra] wiki page.
 
 The Pixman master repository can be found at:
+<https://gitlab.freedesktop.org/pixman/pixman>
 
-    https://gitlab.freedesktop.org/pixman/pixman
-
+[git-guide]: https://www.kernel.org/pub/software/scm/git/docs/giteveryday.html
+[git-doc]: https://git-scm.com/docs
+[fdo-git-infra]: https://www.freedesktop.org/wiki/Infrastructure/git
 
 Sending patches
 ---------------
 
-Patches should be submitted in form of Merge Requests via GitLab.
+Patches should be submitted in form of [Merge Requests][pixman-mr] via GitLab.
 
-You will first need to verify your Freedesktop.org account by creating a *User
-verification* issue:
+You will first need to verify your freedesktop.org account by creating a [User
+verification issue][fdo-user-verification].
 
-    https://gitlab.freedesktop.org/freedesktop/freedesktop/-/issues/new?description_template=User%20verification
+Make sure to [add ssh keys][ssh-keys] to your GitLab profile.
 
-Then you will be able to create a fork of the main pixman repository at
+Then you will be able to create a fork of the [main pixman
+repository][pixman-repo] via the [Fork][pixman-fork] button on the top right.
+Once that is done you can add your personal repository as a git remote to your
+local pixman development git repository:
 
-    https://gitlab.freedesktop.org/pixman/pixman
-
-via the Fork button on the top right. Once that is done you can add your
-personal repository as a remote to your local pixman development git checkout:
-
-    git remote add my-gitlab git@ssh.gitlab.freedesktop.org:YOURUSERNAME/pixman.git
-
-    git fetch my-gitlab
-
-Make sure to have added ssh keys to your GitLab profile at
-
-    https://gitlab.freedesktop.org/-/user_settings/ssh_keys
+```shell
+$ git remote add my-gitlab git@ssh.gitlab.freedesktop.org:YOURUSERNAME/pixman.git
+$ git fetch my-gitlab
+```
 
 Once that is set up, the general workflow for sending patches is to create a
 new local branch with your improvements and once it's ready push it to your
 personal pixman fork:
 
-    git checkout -b fix-some-bug
-    ...
-    git push my-gitlab
+```shell
+$ git checkout -b fix-some-bug
+...
+$ git push my-gitlab
+```
 
 The output of the `git push` command will include a link that allows you to
 create a Merge Request against the official pixman repository.
@@ -84,7 +72,9 @@ create a Merge Request against the official pixman repository.
 Whenever you make changes to your branch (add new commits or fix up commits)
 you push them back to your personal pixman fork:
 
-    git push -f my-gitlab
+```shell
+$ git push -f my-gitlab
+```
 
 If there is an open Merge Request GitLab will automatically pick up the
 changes from your branch and pixman developers can review them anew.
@@ -102,11 +92,20 @@ following guidelines:
 
    You can run the test suite with
 
-       meson test -C builddir
+   ```shell
+   $ meson test -C builddir
+   ```
 
    It will take around two minutes to run on a modern PC.
 
- - Follow the coding style described in the CODING_STYLE file
+ - Follow the coding style described in the CODING_STYLE file. The coding style
+   rules are also reflected in the clang-format configuration, so you could use
+   autoformatting from your IDE (if it supports clang-format) or invoke it
+   manually with:
+
+   ```shell
+   $ clang-format -i pixman/file-to-check.c
+   ```
 
  - For bug fixes, include an update to the test suite to make sure
    the bug doesn't reappear.
@@ -137,3 +136,8 @@ If you think that the reviewers are wrong about something, or that the
 guidelines above are wrong, feel free to discuss the issue. The purpose
 of the guidelines and code review is to ensure high code quality; it is
 not an exercise in compliance.
+
+[fdo-user-verification]: https://gitlab.freedesktop.org/freedesktop/freedesktop/-/issues/new?description_template=User%20verification
+[pixman-repo]: https://gitlab.freedesktop.org/pixman/pixman
+[pixman-fork]: https://gitlab.freedesktop.org/pixman/pixman/-/forks/new
+[ssh-keys]: https://gitlab.freedesktop.org/-/user_settings/ssh_keys
