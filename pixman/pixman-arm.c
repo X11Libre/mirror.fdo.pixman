@@ -181,6 +181,13 @@ detect_cpu_features (void)
 #include <string.h>
 #include <elf.h>
 
+#ifndef HWCAP_ARM_VFP
+#define HWCAP_ARM_VFP	(1 << 6)
+#endif
+#ifndef HWCAP_ARM_NEON
+#define HWCAP_ARM_NEON	(1 << 12)
+#endif
+
 static arm_cpu_features_t
 detect_cpu_features (void)
 {
@@ -197,13 +204,9 @@ detect_cpu_features (void)
 	    {
 		uint32_t hwcap = aux.a_un.a_val;
 
-		/* hardcode these values to avoid depending on specific
-		 * versions of the hwcap header, e.g. HWCAP_NEON
-		 */
-		if ((hwcap & 64) != 0)
+		if ((hwcap & HWCAP_ARM_VFP) != 0)
 		    features |= ARM_VFP;
-		/* this flag is only present on kernel 2.6.29 */
-		if ((hwcap & 4096) != 0)
+		if ((hwcap & HWCAP_ARM_NEON) != 0)
 		    features |= ARM_NEON;
 	    }
 	    else if (aux.a_type == AT_PLATFORM)
