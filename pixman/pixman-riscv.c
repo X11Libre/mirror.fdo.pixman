@@ -80,6 +80,24 @@ is_rvv_1_0_available ()
 
     return 0;
 }
+#elif defined(HAVE_GETAUXVAL)
+#include <sys/auxv.h>
+#include <asm/hwcap.h>
+
+static int
+is_rvv_1_0_available ()
+{
+    unsigned long hwcap;
+
+    hwcap = getauxval (AT_HWCAP);
+
+    if (hwcap & COMPAT_HWCAP_ISA_V)
+    {
+        return 1;
+    }
+
+    return 0;
+}
 #endif
 
 static riscv_cpu_features_t
@@ -87,7 +105,7 @@ detect_cpu_features (void)
 {
     riscv_cpu_features_t features = 0;
 
-#if defined(HAVE_ELF_AUX_INFO) || defined(HAVE_RVV_LINUX)
+#if defined(HAVE_ELF_AUX_INFO) || defined(HAVE_RVV_LINUX) || defined(HAVE_GETAUXVAL)
     if (is_rvv_1_0_available ())
     {
 	features |= RVV;
