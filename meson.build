@@ -590,8 +590,8 @@ if host_machine.system() == 'linux' and host_machine.cpu_family() == 'riscv64'
           return 0;
       }
       ''',
-      name : 'Linux appropriate for RVV')
-    config.set('HAVE_RVV_LINUX', 1)
+      name : 'Linux hwprobe and getauxval for RVV')
+    config.set('HAVE_HWPROBE_GETAUXVAL', 1)
   endif
 endif
 
